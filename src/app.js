@@ -29,6 +29,7 @@ app.use(rateLimit({
 }));
 app.use(cors());
 app.use(helmet());
+app.use(express.static('./src/public'));
 
 // routes
 app.use(routes);
