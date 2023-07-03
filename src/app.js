@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import path from 'node:path';
 
 import * as db from './db/connect';
 import routes from './routes';
@@ -29,7 +30,7 @@ app.use(rateLimit({
 }));
 app.use(cors());
 app.use(helmet());
-app.use(express.static('./src/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use(routes);
