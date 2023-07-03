@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "jobs-api-freecodecamp",
+    "name": "jobs-api-06-freecodecamp",
     "builds": [
         {
             "src": "src/app.js",
