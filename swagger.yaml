@@ -22,18 +22,19 @@ paths:
               allOf:
               - $ref: '#/components/schemas/RegisterRequest'
               - example:
-                  name: minhnguyent546
-                  email: minhnguyent546@test.gmail.com
-                  password: '123123'
+                  name: test_user
+                  email: test_user@test.gmail.com
+                  password: '123456'
             example:
-              name: minhnguyent546
-              email: minhnguyent546@test.gmail.com
-              password: '123123'
+              name: test_user
+              email: test_user@test.gmail.com
+              password: '123456'
         required: true
       responses:
-        '200':
-          description: ''
-          headers: {}
+        '201':
+          description: User created
+        '400':
+          description: Mongo server error
       deprecated: false
       security: []
   /auth/login:
@@ -51,16 +52,19 @@ paths:
               allOf:
               - $ref: '#/components/schemas/LoginRequest'
               - example:
-                  email: minhnguyent546@test.gmail.com
-                  password: '123123'
+                  email: test_user@test.gmail.com
+                  password: '123456'
             example:
-              email: minhnguyent546@test.gmail.com
-              password: '123123'
+              email: test_user@test.gmail.com
+              password: '123456'
         required: true
       responses:
         '200':
-          description: ''
-          headers: {}
+          description: Login successfully
+        '400':
+          description: Mongo server error
+        '404':
+          description: User not found. Wrong email or password
       deprecated: false
       security: []
   /jobs:
@@ -72,8 +76,9 @@ paths:
       parameters: []
       responses:
         '200':
-          description: ''
-          headers: {}
+          description: OK
+        '400':
+          description: Mongo server error
       deprecated: false
       security:
       - bearer: []
@@ -100,9 +105,10 @@ paths:
               status: interview
         required: true
       responses:
-        '200':
-          description: ''
-          headers: {}
+        '201':
+          description: Job created
+        '400':
+          description: Mongo server error
       deprecated: false
       security:
       - bearer: []
@@ -123,8 +129,11 @@ paths:
           example: 64a1819cfceee597d81d01b1
       responses:
         '200':
-          description: ''
-          headers: {}
+          description: OK
+        '400':
+          description: Mongo server error
+        '404':
+          description: Job not found
       deprecated: false
       security:
       - bearer: []
@@ -150,14 +159,17 @@ paths:
               allOf:
               - $ref: '#/components/schemas/UpdatejobRequest'
               - example:
-                  status: pending
+                  status: intern
             example:
-              status: pending
+              status: intern
         required: true
       responses:
         '200':
-          description: ''
-          headers: {}
+          description: OK
+        '400':
+          description: Mongo server error
+        '404':
+          description: Job not found
       deprecated: false
       security:
       - bearer: []
@@ -177,8 +189,11 @@ paths:
           example: 64a1809cfceee597d81d01b4
       responses:
         '200':
-          description: ''
-          headers: {}
+          description: OK
+        '400':
+          description: Mongo server error
+        '404':
+          description: Job not found
       deprecated: false
       security:
       - bearer: []
@@ -199,9 +214,9 @@ components:
         password:
           type: string
       example:
-        name: minhnguyent546
-        email: minhnguyent546@test.gmail.com
-        password: '123123'
+        name: test_user
+        email: test_user@test.gmail.com
+        password: '123456'
     LoginRequest:
       title: LoginRequest
       required:
@@ -214,8 +229,8 @@ components:
         password:
           type: string
       example:
-        email: minhnguyent546@test.gmail.com
-        password: '123123'
+        email: test_user@test.gmail.com
+        password: '123456'
     CreatejobRequest:
       title: CreatejobRequest
       required:
@@ -243,7 +258,7 @@ components:
         status:
           type: string
       example:
-        status: pending
+        status: intern
   securitySchemes:
     bearer:
       type: http
